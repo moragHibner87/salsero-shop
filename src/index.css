@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #f9f0e4;
+  @apply text-dark;
+}
+.bt-primary{
+  @apply border-none h-[45px] px-3 rounded-lg flex items-center justify-center text-center text-base text-white bg-orange-600 font-semibold transition-all hover:bg-orange-500;
+}
+.bt-border{
+  @apply bg-transparent border border-orange-600 text-orange-600  h-[45px] px-3 rounded-lg flex items-center justify-center text-center text-base font-semibold transition-all hover:bg-orange-500 hover:text-white;
+}
+.bt-edit{
+  @apply border border-gray-300 rounded-md text-xs px-1 py-1 pr-2 flex items-center text-gray-500 transition-all hover:border-orange-600 hover:text-orange-600;
+}
+.label{
+  @apply text-gray-500 text-xs block;
+}
+.input{
+  @apply h-[40px] bg-white border-b border-gray-300 w-full text-lg outline-none focus:outline-none focus:border-blue-700;
+}
+.modal{
+  @apply pointer-events-none opacity-0 transition-all duration-300 delay-75
+}
+.modal.open{
+  @apply pointer-events-auto opacity-100
+}
+
+.flex{
+  flex-wrap: wrap;
+}
+select{
+  cursor: pointer;
+}
+.material-symbols-rounded{
+  line-height: 1;
+  font-size:1.5em;
+}
+p{
+  margin-bottom: .4rem;
+}
+.container{
+  @apply px-[20px]
+}
+.main-nav li a{
+  @apply flex items-center py-4 px-2 transition-all text-xl
+}
+.nav-active{
+  @apply font-bold text-yellow-500 bg-orange-50
+}
+.currency{
+  @apply text-[.7em]
+}
+.prod-img{
+  @apply flex items-center justify-center aspect-square bg-orange-100 rounded-md p-3 mr-5
+}
+.prod-img img{
+  width: 100%;
+}
+.all-products .product-item .prod-img{
+  width:90px;
+}
+.expand-open{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: .3s;
+}
+.expand-open[aria-expanded="true"]{
+  grid-template-rows: 1fr;
+}
+.expand-open[aria-expanded="true"] .inner-expand{
+  padding:1rem 0;
+}
+.tag-outStock{
+  @apply bg-red-100 text-red-600 rounded-md text-xs text-center px-2 py-1 inline-block
+}
