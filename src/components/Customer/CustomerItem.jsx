@@ -43,7 +43,7 @@ export default function CustomerItem({customer}) {
                 </div>     
             </div>
             <div className='w-1/5'>
-                <button onClick={openBuyNow} className='bt-primary !text-sm !h-auto !py-2'>Add Product</button>
+                <button onClick={openBuyNow} className='bt-primary !text-sm !h-auto !py-2'>+ Add Product</button>
             </div>
             <div>
                 <Link to={`/customers/${customer.id}`} className="bt-edit mb-6 w-fit">
