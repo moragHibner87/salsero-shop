@@ -81,12 +81,12 @@ const deleteItem = async (_collection, id) => {
   }
 };
 
-//Reset All State
+//Reset Each State
 const resetState = async (dispatch, dispatchFunc, _collection) => {
   try {
     const data = await getAll(_collection);
     dispatch(dispatchFunc(data));
-    console.log('resetState: ', _collection, data);
+    //console.log('resetState: ', _collection, data);
   } catch (error) {
     console.error(`Error fetching ${_collection}:`, error);
   }

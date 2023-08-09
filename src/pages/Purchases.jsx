@@ -1,33 +1,49 @@
 
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import {Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { useState, useEffect, useCallback } from "react";
+import {Link, useSearchParams } from 'react-router-dom'
 import Search from "../components/Purchase/Search";
 import ResultRow from "../components/Purchase/ResultRow";
 
 export default function Purchases() {
   const purchases = useSelector((state) => state.purchases.purchases);
+  const [searchParams, setSearchParams] = useSearchParams()
   const [filteredPurchases, setFilteredPurchases] = useState(purchases);
 
   useEffect(() => {
     if (purchases.length > 0) {
       setFilteredPurchases(purchases);
     }
-  }, [purchases])
+    const params = searchParams.entries();
+    const filters = {};
+    for (const [key, value] of params) {
+      filters[key] = value;
+    }
 
-  const handleSearch = (searchData) => {
+    const filteredResults = purchases.filter((purchase) => {
+      const productMatch = !filters.ProductID || purchase.ProductID === filters.ProductID;
+      const customerMatch = !filters.CustomerID || purchase.CustomerID === filters.CustomerID;
+      const dateMatch = !filters.Date || purchase.Date === filters.Date;
+      return productMatch && customerMatch && dateMatch;
+    });
+    //console.log(filteredResults)
+    setFilteredPurchases(filteredResults);
+
+  }, [purchases, searchParams])
+
+  const handleSearch = useCallback((searchData) => {
     if(!searchData) {
       return setFilteredPurchases(purchases);
     }
-    const filteredResults = purchases.filter((purchase) => {
-      const productMatch = !searchData.ProductID || purchase.ProductID === searchData.ProductID;
-      const customerMatch = !searchData.CustomerID || purchase.CustomerID === searchData.CustomerID;
-      const dateMatch = !searchData.Date || purchase.Date === searchData.Date;
-      return productMatch && customerMatch && dateMatch;
-    });
 
-    setFilteredPurchases(filteredResults);
-  };
+    const queryParams = new URLSearchParams();
+    if (searchData.ProductID) queryParams.set('ProductID', searchData.ProductID);
+    if (searchData.CustomerID) queryParams.set('CustomerID', searchData.CustomerID);
+    if (searchData.Date) queryParams.set('Date', searchData.Date);
+
+    setSearchParams(queryParams.toString());
+
+  }, [purchases, searchParams]);
 
 
   return (

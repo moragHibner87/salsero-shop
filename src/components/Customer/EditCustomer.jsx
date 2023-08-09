@@ -51,6 +51,7 @@ export default function EditCustomer({ customer}) {
             await updateItem('customers', customer.id, newCustomer);
             await resetState(dispatch, doInitCustomers, 'customers');
             setShowMessage(true);
+            setTimeout(() => setShowMessage(false), 3000);
         }
         catch (error) {
             console.log(error);
