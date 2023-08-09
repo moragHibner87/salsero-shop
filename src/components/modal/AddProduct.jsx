@@ -21,7 +21,6 @@ export default function AddProduct() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data)
         try {
             await addItem('products', data);
             await resetState(dispatch, doInitProducts, 'products')
