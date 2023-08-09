@@ -1,6 +1,16 @@
 
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useState, useCallback } from "react";
+import { useSearchParams } from 'react-router-dom';
+
+// handle Date Format
+const dateFormat = (inputDate) => {
+    const parts = inputDate.split("-");
+    const year = parts[0];
+    const month = parts[1];
+    const day = parts[2];
+    return `${day}/${month}/${year}`;
+}
 
 export default function Search({onSearch}) {
     const products = useSelector((state) => state.products.products);
@@ -9,6 +19,8 @@ export default function Search({onSearch}) {
     const [selectedProduct, setSelectedProduct] = useState('');
     const [selectedCustomer, setSelectedCustomer] = useState('');
     const [selectedDate, setSelectedDate] = useState('');
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
 
     const handleChange = (e) => {
@@ -28,18 +40,23 @@ export default function Search({onSearch}) {
         }
     };
 
-    const handleSearchClick = () => {
+    const handleSearchClick = useCallback(() => {
         const searchCriteria = {
             ProductID: selectedProduct,
             CustomerID: selectedCustomer,
-            Date: selectedDate? new Date(selectedDate).toLocaleDateString() : ''
+            Date: selectedDate? dateFormat(selectedDate) : ''
         };
         onSearch(searchCriteria)
-    }
+    },[selectedProduct,selectedCustomer, selectedDate, onSearch])
+    
     const clearAll = () => {
         setSelectedProduct('');
         setSelectedCustomer('');
         setSelectedDate('');
+
+        const queryParams = new URLSearchParams();
+        setSearchParams(queryParams.toString());
+
         onSearch()
     }
 

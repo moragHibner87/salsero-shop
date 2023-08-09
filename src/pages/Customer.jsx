@@ -1,29 +1,32 @@
 import {Link, useParams } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {getById} from '../firebase'
-import { useDispatch } from 'react-redux'
 import EditCustomer from '../components/Customer/EditCustomer';
 import Orders from '../components/Customer/Orders'
 
 export default function Customer() {
-    const dispatch = useDispatch()
     const {id} = useParams()
     const [customer, setCustomer] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     
-
     useEffect(() => {
         // Fetch Customer
         const fetchCustomer = async () => {
             try {
-            const customerData = await getById('customers', id);
-            setCustomer(customerData);
+                const customerData = await getById('customers', id);
+                setCustomer(customerData);
             } catch (error) {
-            console.error('Error fetching customer:', error);
+                console.error('Error fetching customer:', error);
+            } finally{
+                setIsLoading(false);
             }
         };
         fetchCustomer();
     }, [id]);
    
+    if(isLoading){
+        return <div><h2>Loading...</h2></div>
+    }
 
   return (
     <div className="customer-page">

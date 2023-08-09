@@ -12,57 +12,25 @@ export default function Layout() {
     const isModalOpen = useSelector((state) => state.modal.isModalOpen)
     const dispatch = useDispatch()
 
+    const fetchCollection = async (collectionName) => {
+      try {
+        const data = await getAll(collectionName);
+        dispatch(
+          collectionName === 'products'
+            ? doInitProducts(data)
+            : collectionName === 'customers'
+            ? doInitCustomers(data)
+            : doInitPurchases(data)
+        );
+      } catch (error) {
+        console.error(`Error fetching ${collectionName}:`, error);
+      }
+    };
     useEffect(() => {
-      let cleanUp = false;
-
-        // Fetch Products
-        const fetchProducts = async () => {
-            try {
-              const products = await getAll("products");
-              //console.log('products ', products)
-              if (!cleanUp) {
-                dispatch(doInitProducts(products));
-              }
-            } catch (error) {
-              console.error("Error fetching products:", error);
-            }
-        };
-        fetchProducts();
-
-        // Fetch Customers
-        const fetchCustomers = async () => {
-            try {
-              const customers = await getAll("customers");
-              //console.log('customers: ', customers)
-              if (!cleanUp) {
-                dispatch(doInitCustomers(customers));
-              }
-            } catch (error) {
-              console.error("Error fetching customers:", error);
-            }
-        };
-        fetchCustomers();
-
-        // Fetch Purchases
-        const fetchPurchases = async () => {
-            try {
-              const purchases = await getAll("purchases");
-              //console.log('purchases', purchases)
-              if (!cleanUp) {
-                dispatch(doInitPurchases(purchases));
-              }
-            } catch (error) {
-              console.error("Error fetching purchases:", error);
-            }
-        };
-        fetchPurchases();
-
-        return () => {
-          console.count('cleanUp')
-          cleanUp = true;
-        };
-
-    }, [dispatch])
+      fetchCollection('products');
+      fetchCollection('customers');
+      fetchCollection('purchases');
+    }, [dispatch]);
 
   return (
     <div className='flex gap-8'>
@@ -71,7 +39,9 @@ export default function Layout() {
             <div className='min-h-[90svh]'>
                 <Outlet/>
             </div>
-            <footer className='p-3 text-center text-gray-500'>© Never stop dancing</footer>
+            <footer className='p-3 text-center text-gray-500'>© Never stop dancing | Made By 
+               <a className='ml-2 text-orange-500' href='https://www.linkedin.com/in/morag-hibner-762400238/' target='_blank'>Morag Hibner</a>
+            </footer>
         </main>
 
         {isModalOpen && (

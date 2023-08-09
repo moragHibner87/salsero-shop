@@ -13,18 +13,22 @@ export default function CustomerOrder({order}) {
     const dispatch = useDispatch()
     
     const removePurchase = async () => {
+        const newQuantity = productOrder.quantity + 1;
         try{
-            await deleteItem('purchases',order.id)
-            // update the product's quantity
-            const newQuantity = productOrder.quantity + 1;
-            await updateItem('products', productOrder.id, { quantity: newQuantity });
-
-            await resetState(dispatch,doInitProducts, 'products');
-            await resetState(dispatch,doInitCustomers, 'customers');
-            await resetState(dispatch,doInitPurchases, 'purchases');        
+            await Promise.all([
+                deleteItem('purchases',order.id),
+                updateItem('products', productOrder.id, { quantity: newQuantity })
+            ]);
+        
+            // Reset states
+            await Promise.all([
+                resetState(dispatch,doInitProducts, 'products'),
+                resetState(dispatch,doInitCustomers, 'customers'),
+                resetState(dispatch,doInitPurchases, 'purchases')
+            ])       
 
         }catch(error){
-            confirm(error)
+            console.error(error)
         }
     }
   return (

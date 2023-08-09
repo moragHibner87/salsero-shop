@@ -8,21 +8,27 @@ import OrdersInProduct from '../components/Product/OrdersInProduct'
 export default function Product() {
     const {id} = useParams()
     const [product, setProduct] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         // Fetch Product
         const fetchProduct = async () => {
             try {
-            const productData = await getById('products', id);
-            //console.log(productData);
-            setProduct(productData);
+                const productData = await getById('products', id);
+                //console.log(productData);
+                setProduct(productData);
             } catch (error) {
-            console.error('Error fetching product:', error);
+                console.error('Error fetching product:', error);
+            } finally{
+                setIsLoading(false)
             }
         };
         fetchProduct();
     }, [id]);
-
+    
+    if(isLoading){
+        return <div><h2>Loading...</h2></div>
+    }
 
   return (
     <div className="product-page">
