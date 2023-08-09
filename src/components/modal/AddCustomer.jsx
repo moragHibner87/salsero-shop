@@ -20,7 +20,6 @@ export default function AddCustomer() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data)
         try {
             await addItem('customers', data);
             await resetState(dispatch, doInitCustomers, 'customers')
