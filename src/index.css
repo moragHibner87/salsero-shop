@@ -46,7 +46,7 @@ p{
   @apply px-[20px]
 }
 .main-nav li a{
-  @apply flex items-center py-4 px-2 transition-all text-xl
+  @apply flex items-center py-5 lg:py-4 px-2 transition-all text-2xl lg:text-xl
 }
 .nav-active{
   @apply font-bold text-yellow-500 bg-orange-50
@@ -77,3 +77,11 @@ p{
 .tag-outStock{
   @apply bg-red-100 text-red-600 rounded-md text-xs text-center px-2 py-1 inline-block
 }
+
+@media (max-width: 1024px){
+  .side{
+    transition: .3s;
+    transform: translate(-100%);
+  }
+}
+

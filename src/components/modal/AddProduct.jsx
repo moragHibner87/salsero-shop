@@ -50,7 +50,7 @@ export default function AddProduct() {
                 <label className="label !text-sm mb-1">Quantity</label>
                 <input type="number" name="quantity" value={data.quantity || ''} onChange={handleChange}  className="input rounded border border-gray-300 px-4" />
             </div>
-            <button type="submit" className="bt-primary">
+            <button type="submit" className="bt-primary w-full sm:w-auto">
                 Add Product
             </button>
         </form>

@@ -61,7 +61,7 @@ export default function Search({onSearch}) {
     }
 
   return (
-    <div className="bg-orange-200/50 p-5 rounded-md flex items-end gap-5">
+    <div className="bg-orange-200/50 p-5 rounded-md flex flex-col lg:flex-row lg:items-end gap-3 lg:gap-5">
         <div className="text-2xl mb-2">Search by:</div>
         <div>
             <label className="label !text-sm">Select Product:</label>
@@ -89,11 +89,13 @@ export default function Search({onSearch}) {
             <label className="label !text-sm">Order Date:</label>
             <input type="date" name="Date" value={selectedDate} onChange={handleChange} className="input rounded border border-gray-300 px-4"/>
         </div>
-        <button onClick={handleSearchClick} className="bt-primary !px-8 mt-2">Search</button>
-        <button type='button' onClick={clearAll} className="flex items-center text-base text-red-500 mb-1">
-            <span className="material-symbols-rounded mb-1">delete</span>
-            Clear All
-        </button>
+        <div className="w-full xl:w-auto flex gap-2 items-center">
+            <button onClick={handleSearchClick} className="bt-primary flex-1 lg:flex-none !px-8 mt-2">Search</button>
+            <button type='button' onClick={clearAll} className="flex items-center text-base text-red-500 mt-2 lg:mt-4">
+                <span className="material-symbols-rounded mb-1">delete</span>
+                Clear All
+            </button>
+        </div>
     </div>
   )
 }

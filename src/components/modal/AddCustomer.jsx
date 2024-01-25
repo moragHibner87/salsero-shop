@@ -63,7 +63,7 @@ export default function AddCustomer() {
                     <option value="Seattle">Seattle</option>
                 </select>
             </div>
-            <button type="submit" className="bt-primary">
+            <button type="submit" className="bt-primary w-full sm:w-auto">
                 Add Customer
             </button>
         </form>

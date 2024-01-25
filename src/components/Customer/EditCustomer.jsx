@@ -101,11 +101,11 @@ export default function EditCustomer({ customer}) {
                         <option value="Seattle">Seattle</option>
                     </select>
                 </div>
-                <div className='flex justify-between'>
-                    <button type="submit" className="bt-primary">
+                <div className='flex gap-2 sm:gap-0 justify-center sm:justify-between'>
+                    <button type="submit" className="bt-primary w-full sm:w-auto">
                         Update Customer
                     </button>
-                    <button type='button' onClick={handleDelete} className="flex items-center text-base text-red-500">
+                    <button type='button' onClick={handleDelete} className="flex items-center text-sm sm:text-base text-red-500">
                         <span className="material-symbols-rounded mb-1">delete</span>
                         Delete Customer
                     </button>

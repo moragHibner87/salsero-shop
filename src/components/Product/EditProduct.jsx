@@ -67,9 +67,9 @@ export default function EditProduct({product}) {
     }
 
   return (
-    <div className='flex bg-white rounded-md p-5 shadow-lg'>
-        <div className='prod-img w-1/4'><img src={ProdImg} alt={product.name} /></div>
-        <div className='flex-1'>
+    <div className='lg:flex bg-white rounded-md p-5 shadow-lg'>
+        <div className='prod-img mr-0 lg:mr-5 w-full lg:w-1/4'><img src={ProdImg} alt={product.name} /></div>
+        <div className='flex-1 mt-5 lg:mt-0'>
             <h1 className="font-nunito text-3xl md:text-5xl !leading-[1.2] font-semibold mb-3">{product.name}</h1>
             {outStock && (
                  <div className='tag-outStock mb-3'>Out of Stock</div>
@@ -88,8 +88,8 @@ export default function EditProduct({product}) {
                     <label className="label !text-sm mb-1">Quantity</label>
                     <input type="number" name="quantity" value={quantity} onChange={handleChange}  className="input rounded border border-gray-300 px-4" />
                 </div>
-                <div className='flex justify-between'>
-                    <button type="submit" className="bt-primary">
+                <div className='flex gap-2 sm:gap-0 justify-center sm:justify-between'>
+                    <button type="submit" className="bt-primary w-full sm:w-auto">
                         Update Product
                     </button>
                     <button type='button' onClick={handleDelete} className="flex items-center text-base text-red-500">

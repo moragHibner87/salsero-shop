@@ -69,7 +69,7 @@ export default function BuyNow() {
                     <option key={product.id} value={product.id}>{product.name}</option>
                 ))}
             </select>
-            <button type="submit" className="bt-primary !px-8 mt-8">Buy Now</button>
+            <button type="submit" className="bt-primary w-full sm:w-auto !px-8 mt-8">Buy Now</button>
         </form>
     </div>
   )

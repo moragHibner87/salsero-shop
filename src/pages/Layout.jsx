@@ -33,15 +33,13 @@ export default function Layout() {
     }, [dispatch]);
 
   return (
-    <div className='flex gap-8'>
+    <div className='lg:flex gap-8'>
         <Header/>
-        <main className='main-area pt-20 lg:pt-10 px-5 lg:px-10 p-10 flex-1'>
-            <div className='min-h-[90svh]'>
-                <Outlet/>
-            </div>
-            <footer className='p-3 text-center text-gray-500'>© Never stop dancing | Made By 
-               <a className='ml-2 text-orange-500' href='https://www.linkedin.com/in/morag-hibner-762400238/' target='_blank'>Morag Hibner</a>
-            </footer>
+        <main className='main-area  pt-10 px-5 lg:px-10 p-10 flex-1 min-h-[90svh]'>
+          <Outlet/>
+          <footer className='p-3 text-center text-gray-500'>© Never stop dancing | Made By 
+              <a className='ml-2 text-orange-500' href='https://www.linkedin.com/in/morag-hibner-762400238/' target='_blank'>Morag Hibner</a>
+          </footer>
         </main>
 
         {isModalOpen && (

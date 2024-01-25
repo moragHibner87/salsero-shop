@@ -32,7 +32,7 @@ export default function Product() {
 
   return (
     <div className="product-page">
-        <Link to="/products" className='flex items-center py-4 mb-4'>
+        <Link to="/products" className='flex items-center pb-4 lg:pt-4 lg:mb-4'>
             <span className="material-symbols-rounded mr-1">arrow_left_alt</span>
             Back to Products
         </Link>

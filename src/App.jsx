@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { 
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements, 
+  Route, 
+  useLocation 
+} from "react-router-dom"
 import { useEffect } from 'react';
 
 import Layout from "./pages/Layout"
@@ -17,30 +23,24 @@ function ScrollToTop({ children }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-
-
   return <>{children}</>;
 }
 
-function App() {
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path="/" element={<ScrollToTop><Layout/></ScrollToTop>}>
+    <Route index element={<Home/>} />
+    <Route path="/products" element={<Products/>}/>
+    <Route path="products/:id" element={<Product/>}/>
+    <Route path="/customers" element={<Customers/>} />
+    <Route path="/customers/:id" element={<Customer/>} />
+    <Route path="/purchases" element={<Purchases/>} />
+    <Route path="*" element={<ErrorPage/>} />
+  </Route>
+))
 
+function App() {
   return (
-    
-    <BrowserRouter>
-      <ScrollToTop>
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route index element={<Home/>} />
-            <Route path="/products" element={<Products/>}/>
-            <Route path="products/:id" element={<Product/>}/>
-            <Route path="/customers" element={<Customers/>} />
-            <Route path="/customers/:id" element={<Customer/>} />
-            <Route path="/purchases" element={<Purchases/>} />
-          </Route>
-          <Route path="*" element={<ErrorPage/>} />
-        </Routes>
-        </ScrollToTop>
-    </BrowserRouter>
+    <RouterProvider router={router}/>
    
   )
 }
