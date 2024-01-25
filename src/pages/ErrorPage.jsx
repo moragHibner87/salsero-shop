@@ -3,7 +3,7 @@ import Logo from '../assets/logo-salsero.svg'
 
 export default function ErrorPage() {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen p-8 pb-20'>
+    <div className='flex flex-col items-center justify-center min-h-[70svh] lg:min-h-[80svh] p-8 pb-20'>
       <Link to='/' className='mb-5'>
         <img className='w-[200px]' src={Logo} alt='Logo Salsero' />
       </Link>

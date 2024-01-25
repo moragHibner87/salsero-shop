@@ -36,9 +36,15 @@ export default function ProductOrder({order}) {
   return (
     <>
     {customer && (
-    <Link to={`/customers/${customer.id}`} className="border-t border-gray-300 px-4 py-5 flex justify-between items-center last:border-b">
-        <div className='text-xl font-bold w-1/3'> {order.Date}</div>
-        <div  className='flex items-center flex-1'> 
+    <Link to={`/customers/${customer.id}`} className="border-t border-gray-300 px-4 py-3 lg:py-5 flex justify-between items-center last:border-b">
+        <div className='flex-1 lg:flex-none lg:w-1/3'>
+            <div className='text-base lg:text-xl font-bold'>{order.Date}</div>
+            <div  className='lg:hidden flex items-center flex-1'> 
+                <h2 className='text-lg flex-1'>{customer.firstName} {customer.lastName}</h2>      
+            </div>
+        </div>
+        
+        <div  className='hidden lg:flex items-center flex-1'> 
             <h2 className='text-xl flex-1'>{customer.firstName} {customer.lastName}</h2>      
         </div>
         <div className="bt-edit w-fit">

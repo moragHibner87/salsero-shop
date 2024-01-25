@@ -30,23 +30,29 @@ export default function CustomerItem({customer}) {
     }
 
   return (
-    <div className="product-item bg-white rounded-md p-5 shadow-lg mb-4">
+    <div className="product-item bg-white rounded-md p-5 shadow-lg mb-4 relative">
         <div className='flex items-center justify-between'>
-            <Link to={`/customers/${customer.id}`} className='w-1/4'>
+            <Link to={`/customers/${customer.id}`} className='w-1/2 lg:w-1/4'>
                 <h2 className='text-2xl font-bold'>{customer.firstName} {customer.lastName}</h2>
                 <p className='text-gray-600 mt-1 mb-0'>From: {customer.city}</p>
+                <div className='lg:hidden my-2'>
+                    <div className='text-sm text-gray-400'>Total Purchases</div>
+                    <div className='font-bold text-xl'>
+                    <span className="currency">$</span>{totalPrices.toLocaleString()}
+                    </div>     
+                </div>
             </Link>
-            <div className='w-1/5'>
+            <div className='hidden lg:block w-1/5'>
                 <div className='text-sm text-gray-400 mb-1'>Total Purchases</div>
                 <div className='font-bold text-xl'>
                    <span className="currency">$</span>{totalPrices.toLocaleString()}
                 </div>     
             </div>
-            <div className='w-1/5'>
+            <div className='lg:w-1/5 mt-20 lg:mt-0'>
                 <button onClick={openBuyNow} className='bt-primary !text-sm !h-auto !py-2'>+ Add Product</button>
             </div>
-            <div>
-                <Link to={`/customers/${customer.id}`} className="bt-edit mb-6 w-fit">
+            <div className='w-full lg:w-auto flex lg:block justify-end'>
+                <Link to={`/customers/${customer.id}`} className="bt-edit mb-6 w-fit absolute lg:static top-4 right-4">
                     <span className="material-symbols-rounded mr-1">border_color</span>
                     Edit
                 </Link>

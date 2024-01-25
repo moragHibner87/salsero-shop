@@ -33,14 +33,18 @@ export default function CustomerOrder({order}) {
     }
   return (
     <div className="border-t border-gray-300 px-4 py-3 flex justify-between items-center last:border-b">
-        <Link to={`/products/${productOrder.id}`} className='flex items-center w-1/3'>
+        <Link to={`/products/${productOrder.id}`} className='flex items-center flex-1 lg:flex-none lg:w-1/3'>
             <div className='prod-img w-[60px]'><img src={ProdImg} alt={productOrder.name}/></div> 
-            <h2 className='text-xl font-bold flex-1'>{productOrder.name}</h2>      
+            <div className='flex-1'>
+                <h2 className='text-base sm:text-lg lg:text-xl !leading-[1.1] font-bold'>{productOrder.name}</h2>
+                <div className='lg:hidden text-sm sm:text-base mt-1'> {order.Date}</div>
+                <div className='lg:hidden text-xl'><span className="currency">$</span>{productOrder.price}</div>     
+            </div>
         </Link>
-        <div className='w-1/4'> {order.Date}</div>
-        <div className='text-2xl w-1/5 text-right ml-auto mr-4'><span className="currency">$</span>{productOrder.price}</div>
+        <div className='hidden lg:block w-1/4'> {order.Date}</div>
+        <div className='hidden lg:block text-2xl w-1/5 text-right lg:ml-auto pr-4 lg:pr-8'><span className="currency">$</span>{productOrder.price}</div>
         <div>
-            <button onClick={removePurchase} className='flex items-center text-base text-red-500'>Remove</button>
+            <button onClick={removePurchase} className='flex items-center text-sm sm:text-base text-red-500'>Remove</button>
         </div>
     </div>
   )
