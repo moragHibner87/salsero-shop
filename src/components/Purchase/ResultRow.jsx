@@ -9,6 +9,10 @@ export default function ResultRow({purchase}) {
     const product = products.find(product => product.id === purchase.ProductID)
     const customer = customers.find(customer => customer.id === purchase.CustomerID)
 
+  if (!customer || !product) {
+      return null;
+  }
+
   return (
     <div className='bg-white rounded-md p-5 py-3 shadow-lg mb-4 flex justify-between items-center'>
       <Link to={`/customers/${customer.id}`} className='w-full sm:w-1/2 lg:w-1/5'>
