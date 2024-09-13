@@ -13,6 +13,8 @@ export default function CustomerOrder({order}) {
     const dispatch = useDispatch()
     
     const removePurchase = async () => {
+        if (!productOrder) return;
+
         const newQuantity = productOrder.quantity + 1;
         try{
             await Promise.all([
@@ -31,6 +33,11 @@ export default function CustomerOrder({order}) {
             console.error(error)
         }
     }
+
+    if (!productOrder) {
+        return null;
+    }
+
   return (
     <div className="border-t border-gray-300 px-4 py-3 flex justify-between items-center last:border-b">
         <Link to={`/products/${productOrder.id}`} className='flex items-center flex-1 lg:flex-none lg:w-1/3'>

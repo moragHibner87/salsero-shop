@@ -14,13 +14,13 @@ export default function PurchasesBox() {
 
   const renderPrice = (_id) => {
     const product = products.find((product) => product.id === _id)
-    return product.price
+    return product?.price
   }
 
   return (
     <div className="bg-white rounded-md p-5 shadow-lg">
         <h2 className="text-xl text-gray-400 mb-4">Latest Purchases</h2>
-        {purchases.length == 0? (
+        {purchases?.length == 0? (
           <div className='border-t border-gray-300 py-4 text-center'>
             <span className="material-symbols-rounded my-4 text-gray-300 !text-[60px]">payments</span>
             <h2 className='text-2xl capitalize mb-5'>You have no Purchases yet..</h2>
